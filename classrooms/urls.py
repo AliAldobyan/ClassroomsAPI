@@ -18,6 +18,10 @@ urlpatterns = [
     path('login/', TokenObtainPairView.as_view(), name='api-login'),
     path('register/', views_api.CreateUser.as_view(), name='api-register'),
 
+    path('classrooms-api/', views_api.ClassroomList.as_view(), name='api-classroom-list'),
+    path('classrooms-api/<int:classroom_id>/', views_api.ClassroomDetail.as_view(), name='api-classroom-detail'),
+
+
     path('classrooms/', views.classroom_list, name='classroom-list'),
     path('classrooms/<int:classroom_id>/', views.classroom_detail, name='classroom-detail'),
 
