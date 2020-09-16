@@ -17,7 +17,13 @@ class RegisterSerializer(serializers.ModelSerializer):
         return validated_data
 
 
-class ClassListSerializer(serializers.ModelSerializer):
+class ClassSerializer(serializers.ModelSerializer):
     class Meta:
         model = Classroom
         fields = '__all__'
+
+
+class ClassCreateUpdateSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Classroom
+        fields = ['name', 'subject', 'year']

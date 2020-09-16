@@ -20,6 +20,7 @@ urlpatterns = [
 
     path('classrooms-api/', views_api.ClassroomList.as_view(), name='api-classroom-list'),
     path('classrooms-api/<int:classroom_id>/', views_api.ClassroomDetail.as_view(), name='api-classroom-detail'),
+    path('classrooms-api/create/', views_api.ClassroomCreate.as_view(), name='api-classroom-create'),
 
 
     path('classrooms/', views.classroom_list, name='classroom-list'),

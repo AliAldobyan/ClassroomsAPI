@@ -7,8 +7,9 @@ from rest_framework.generics import(ListAPIView,
                                     )
 from classes.models import Classroom
 from .serializers import ( RegisterSerializer ,
-                           ClassListSerializer,
-                           
+                           ClassSerializer,
+                           ClassCreateUpdateSerializer,
+
                          )
 
 
@@ -18,11 +19,17 @@ class CreateUser(CreateAPIView):
 
 class ClassroomList (ListAPIView):
     queryset = Classroom.objects.all()
-    serializer_class = ClassListSerializer
+    serializer_class = ClassSerializer
 
 
 class ClassroomDetail (RetrieveAPIView):
     queryset = Classroom.objects.all()
-    serializer_class = ClassListSerializer
+    serializer_class = ClassSerializer
     lookup_field = 'id'
     lookup_url_kwarg = 'classroom_id'
+
+class ClassroomCreate(CreateAPIView):
+    serializer_class = ClassCreateUpdateSerializer
+
+    def perform_create(self, serializer):
+        serializer.save(teacher=self.request.user)
