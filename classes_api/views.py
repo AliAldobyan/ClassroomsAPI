@@ -28,8 +28,16 @@ class ClassroomDetail (RetrieveAPIView):
     lookup_field = 'id'
     lookup_url_kwarg = 'classroom_id'
 
+
 class ClassroomCreate(CreateAPIView):
     serializer_class = ClassCreateUpdateSerializer
 
     def perform_create(self, serializer):
         serializer.save(teacher=self.request.user)
+
+
+class ClassroomUpdate(RetrieveUpdateAPIView):
+    queryset = Classroom.objects.all()
+    serializer_class = ClassCreateUpdateSerializer
+    lookup_field = 'id'
+    lookup_url_kwarg = 'classroom_id'
